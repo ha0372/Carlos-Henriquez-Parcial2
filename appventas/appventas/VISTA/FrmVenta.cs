@@ -24,14 +24,14 @@ namespace appventas.VISTA
 
                 var consultacliente = bd.tb_cliente.ToList();
 
-                comboBox2.DataSource = consultacliente;
-                comboBox2.DisplayMember = "nombreCliente";
-                comboBox2.ValueMember = "iDCliente";
+                cbxClient.DataSource = consultacliente;
+                cbxClient.DisplayMember = "nombreCliente";
+                cbxClient.ValueMember = "iDCliente";
 
                 var consultadocumento = bd.tb_documento.ToList();
-                comboBox1.DataSource = consultacliente;
-                comboBox1.DisplayMember = "nombreDocumento";
-                comboBox1.ValueMember = "iDDocumento";
+                cbxTdocument.DataSource = consultadocumento;
+                cbxTdocument.DisplayMember = "nombreDocumento";
+                cbxTdocument.ValueMember = "iDDocumento";
 
 
             }

@@ -28,8 +28,8 @@ namespace appventas
             if (valor == 1)
             {
                 MessageBox.Show("Welcome");
-                FrmVenta venta = new FrmVenta();
-                venta.Show();
+                FrmMenu menu = new FrmMenu();
+                menu.Show();
 
             }
             else
