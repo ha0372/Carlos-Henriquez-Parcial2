@@ -32,7 +32,7 @@ namespace appventas.VISTA
         {
             dataGridView1.Rows.Clear();
             ClsDProducto clsproducto = new ClsDProducto();
-            List<tb_producto> Lista = clsproducto.datoProduct();
+            List<tb_producto> Lista = clsproducto.cargarDProductos();
 
             foreach (var iteracion in Lista)
             {

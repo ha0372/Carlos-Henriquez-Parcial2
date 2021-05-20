@@ -19,3 +19,4 @@ C:\Users\crobe\Documents\GitHub\Carlos-Henriquez-Parcial2\appventas\appventas\ob
 C:\Users\crobe\Documents\GitHub\Carlos-Henriquez-Parcial2\appventas\appventas\obj\Debug\appventas.VISTA.FrmUsuario.resources
 C:\Users\crobe\Documents\GitHub\Carlos-Henriquez-Parcial2\appventas\appventas\obj\Debug\appventas.VISTA.FrmDocumento.resources
 C:\Users\crobe\Documents\GitHub\Carlos-Henriquez-Parcial2\appventas\appventas\obj\Debug\appventas.VISTA.FrmProducto.resources
+C:\Users\crobe\Documents\GitHub\Carlos-Henriquez-Parcial2\appventas\appventas\obj\Debug\appventas.VISTA.FrmFiltroProducto.resources

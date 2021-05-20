@@ -36,12 +36,17 @@ namespace appventas.VISTA
             this.cbxClient = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtSproduct = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.txtCproduct = new System.Windows.Forms.TextBox();
-            this.txtNproduct = new System.Windows.Forms.TextBox();
-            this.txtPrice = new System.Windows.Forms.TextBox();
+            this.txtIdProducto = new System.Windows.Forms.TextBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.txtPrecio = new System.Windows.Forms.TextBox();
             this.txtAmount = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -102,11 +107,50 @@ namespace appventas.VISTA
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4,
+            this.Column5});
             this.dataGridView1.Location = new System.Drawing.Point(15, 286);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(747, 194);
             this.dataGridView1.TabIndex = 6;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Codigo";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Nombre";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Precio";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Cantidad";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Total";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
             // 
             // txtSproduct
             // 
@@ -132,27 +176,28 @@ namespace appventas.VISTA
             this.btnBuscar.TabIndex = 9;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // txtCproduct
+            // txtIdProducto
             // 
-            this.txtCproduct.Location = new System.Drawing.Point(15, 232);
-            this.txtCproduct.Name = "txtCproduct";
-            this.txtCproduct.Size = new System.Drawing.Size(134, 20);
-            this.txtCproduct.TabIndex = 10;
+            this.txtIdProducto.Location = new System.Drawing.Point(15, 232);
+            this.txtIdProducto.Name = "txtIdProducto";
+            this.txtIdProducto.Size = new System.Drawing.Size(134, 20);
+            this.txtIdProducto.TabIndex = 10;
             // 
-            // txtNproduct
+            // txtNombre
             // 
-            this.txtNproduct.Location = new System.Drawing.Point(206, 231);
-            this.txtNproduct.Name = "txtNproduct";
-            this.txtNproduct.Size = new System.Drawing.Size(136, 20);
-            this.txtNproduct.TabIndex = 11;
+            this.txtNombre.Location = new System.Drawing.Point(206, 231);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(136, 20);
+            this.txtNombre.TabIndex = 11;
             // 
-            // txtPrice
+            // txtPrecio
             // 
-            this.txtPrice.Location = new System.Drawing.Point(390, 231);
-            this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(132, 20);
-            this.txtPrice.TabIndex = 12;
+            this.txtPrecio.Location = new System.Drawing.Point(390, 231);
+            this.txtPrecio.Name = "txtPrecio";
+            this.txtPrecio.Size = new System.Drawing.Size(132, 20);
+            this.txtPrecio.TabIndex = 12;
             // 
             // txtAmount
             // 
@@ -207,9 +252,9 @@ namespace appventas.VISTA
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtAmount);
-            this.Controls.Add(this.txtPrice);
-            this.Controls.Add(this.txtNproduct);
-            this.Controls.Add(this.txtCproduct);
+            this.Controls.Add(this.txtPrecio);
+            this.Controls.Add(this.txtNombre);
+            this.Controls.Add(this.txtIdProducto);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtSproduct);
@@ -222,6 +267,7 @@ namespace appventas.VISTA
             this.Controls.Add(this.label1);
             this.Name = "FrmVenta";
             this.Text = "FrmVenta";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmVenta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -241,13 +287,18 @@ namespace appventas.VISTA
         private System.Windows.Forms.TextBox txtSproduct;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.TextBox txtCproduct;
-        private System.Windows.Forms.TextBox txtNproduct;
-        private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.TextBox txtAmount;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        public System.Windows.Forms.TextBox txtIdProducto;
+        public System.Windows.Forms.TextBox txtNombre;
+        public System.Windows.Forms.TextBox txtPrecio;
     }
 }

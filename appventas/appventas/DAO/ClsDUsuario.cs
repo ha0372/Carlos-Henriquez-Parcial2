@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace appventas.DAO
 {
@@ -27,13 +28,21 @@ namespace appventas.DAO
 
             using (sistema_ventasEntities db = new sistema_ventasEntities())
             {
-                tb_usuario datosUsuario = new tb_usuario();
+                try
+                {
+                    tb_usuario datosUsuario = new tb_usuario();
 
-                datosUsuario.email = usuario.email;
-                datosUsuario.contrasena = usuario.contrasena;
+                    datosUsuario.email = usuario.email;
+                    datosUsuario.contrasena = usuario.contrasena;
 
-                db.tb_usuario.Add(datosUsuario);
-                db.SaveChanges();
+                    db.tb_usuario.Add(datosUsuario);
+                    db.SaveChanges();
+                }
+                catch(Exception)
+                {
+                    MessageBox.Show("Este nombre de usuario ya esta registrado. Por favor ingresa otro ");
+                }
+                
             }
         }
 

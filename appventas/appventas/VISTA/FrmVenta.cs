@@ -1,4 +1,5 @@
-﻿using appventas.MODEL;
+﻿using appventas.DAO;
+using appventas.MODEL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,21 +21,32 @@ namespace appventas.VISTA
 
         private void FrmVenta_Load(object sender, EventArgs e)
         {
-            using (sistema_ventasEntities bd = new sistema_ventasEntities()) {
+            //using (sistema_ventasEntities bd = new sistema_ventasEntities()) {
+            //    var consultacliente = bd.tb_cliente.ToList();
 
-                var consultacliente = bd.tb_cliente.ToList();
-
-                cbxClient.DataSource = consultacliente;
-                cbxClient.DisplayMember = "nombreCliente";
-                cbxClient.ValueMember = "iDCliente";
-
-                var consultadocumento = bd.tb_documento.ToList();
-                cbxTdocument.DataSource = consultadocumento;
-                cbxTdocument.DisplayMember = "nombreDocumento";
-                cbxTdocument.ValueMember = "iDDocumento";
+            ClsDCliente clsDCliente = new ClsDCliente();
 
 
-            }
+            cbxClient.DataSource = clsDCliente.datosClientes();
+            cbxClient.DisplayMember = "nombreCliente";
+            cbxClient.ValueMember = "iDCliente";
+
+
+            ClsDDocumento clsDDocumento = new ClsDDocumento();
+            //var consultadocumento = bd.tb_documento.ToList();
+
+            cbxTdocument.DataSource = clsDDocumento.datosDocs();
+            cbxTdocument.DisplayMember = "nombreDocumento";
+            cbxTdocument.ValueMember = "iDDocumento";
+
+
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            FrmFiltroProducto buscar = new FrmFiltroProducto();
+            buscar.ShowDialog();
         }
     }
 }
+

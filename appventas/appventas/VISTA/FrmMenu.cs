@@ -17,6 +17,8 @@ namespace appventas.VISTA
             InitializeComponent();
         }
 
+        public static FrmVenta venta = new FrmVenta();
+
         private void vENTAToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmVenta venta = new FrmVenta();

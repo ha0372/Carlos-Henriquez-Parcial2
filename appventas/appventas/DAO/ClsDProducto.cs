@@ -9,14 +9,31 @@ namespace appventas.DAO
 {
     class ClsDProducto
     {
-        public List<tb_producto> datoProduct()
+        public List<tb_producto> cargarProductosFiltro(String filtro)
 
         {
-            List<tb_producto> Lista;
+            List<tb_producto> Lista = new List<tb_producto>();
+
+            using (sistema_ventasEntities db = new sistema_ventasEntities())
+            {
+                //Lista = db.tb_producto.ToList();
+
+                Lista = (from listadproductos in db.tb_producto
+                         where listadproductos.nombreProducto.Contains(filtro)
+                         select listadproductos).ToList();
+            }
+
+            return Lista;
+        }
+        public List<tb_producto> cargarDProductos()
+
+        {
+            List<tb_producto> Lista = new List<tb_producto>();
 
             using (sistema_ventasEntities db = new sistema_ventasEntities())
             {
                 Lista = db.tb_producto.ToList();
+
             }
 
             return Lista;
