@@ -15,15 +15,18 @@ namespace appventas.VISTA
         public FrmMenu()
         {
             InitializeComponent();
+            
         }
 
         public static FrmVenta venta = new FrmVenta();
 
         private void vENTAToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmVenta venta = new FrmVenta();
+            //FrmVenta venta = new FrmVenta();
+
             venta.MdiParent = this;
             venta.Show();
+            
             
         }
 

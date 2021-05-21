@@ -23,7 +23,7 @@ namespace appventas.VISTA
             var clsDProducto = new ClsDProducto();  /*inerencia de dato var*/
             dtgProductos.Rows.Clear();
 
-            foreach (var listarDatos  in clsDProducto.cargarProductosFiltro(txtFiltroProducto.Text))
+            foreach (var listarDatos in clsDProducto.cargarProductosFiltro(txtFiltroProducto.Text))
             {
                 dtgProductos.Rows.Add(listarDatos.idProducto, listarDatos.nombreProducto, listarDatos.precioProducto);
             }
@@ -34,7 +34,7 @@ namespace appventas.VISTA
             cargardatos();
         }
 
-        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        void envio()
         {
             String Id = dtgProductos.CurrentRow.Cells[0].Value.ToString();
             String Nombre = dtgProductos.CurrentRow.Cells[1].Value.ToString();
@@ -49,8 +49,21 @@ namespace appventas.VISTA
             FrmMenu.venta.txtIdProducto.Text = Id;
             FrmMenu.venta.txtNombre.Text = Nombre;
             FrmMenu.venta.txtPrecio.Text = Precio;
+            FrmMenu.venta.txtCantidad.Focus();
+
             this.Close();
         }
+        private void dtgProductos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            envio();
+        }
 
+        private void dtgProductos_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                envio();
+            }
+        }
     }
 }

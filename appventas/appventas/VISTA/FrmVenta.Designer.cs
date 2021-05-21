@@ -30,7 +30,7 @@ namespace appventas.VISTA
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.txtNdocument = new System.Windows.Forms.TextBox();
+            this.txtUltimaVenta = new System.Windows.Forms.TextBox();
             this.cbxTdocument = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cbxClient = new System.Windows.Forms.ComboBox();
@@ -47,11 +47,16 @@ namespace appventas.VISTA
             this.txtIdProducto = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtPrecio = new System.Windows.Forms.TextBox();
-            this.txtAmount = new System.Windows.Forms.TextBox();
+            this.txtCantidad = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.txtTotal = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.btnAgregarTotal = new System.Windows.Forms.Button();
+            this.txtTotalFinal = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,12 +69,13 @@ namespace appventas.VISTA
             this.label1.TabIndex = 0;
             this.label1.Text = "Numero de documento";
             // 
-            // txtNdocument
+            // txtUltimaVenta
             // 
-            this.txtNdocument.Location = new System.Drawing.Point(160, 41);
-            this.txtNdocument.Name = "txtNdocument";
-            this.txtNdocument.Size = new System.Drawing.Size(159, 20);
-            this.txtNdocument.TabIndex = 1;
+            this.txtUltimaVenta.Enabled = false;
+            this.txtUltimaVenta.Location = new System.Drawing.Point(160, 41);
+            this.txtUltimaVenta.Name = "txtUltimaVenta";
+            this.txtUltimaVenta.Size = new System.Drawing.Size(159, 20);
+            this.txtUltimaVenta.TabIndex = 1;
             // 
             // cbxTdocument
             // 
@@ -119,7 +125,7 @@ namespace appventas.VISTA
             this.dataGridView1.Location = new System.Drawing.Point(15, 286);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(747, 194);
+            this.dataGridView1.Size = new System.Drawing.Size(794, 194);
             this.dataGridView1.TabIndex = 6;
             // 
             // Column1
@@ -170,6 +176,7 @@ namespace appventas.VISTA
             // 
             // btnBuscar
             // 
+            this.btnBuscar.CausesValidation = false;
             this.btnBuscar.Location = new System.Drawing.Point(377, 138);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(75, 23);
@@ -180,6 +187,7 @@ namespace appventas.VISTA
             // 
             // txtIdProducto
             // 
+            this.txtIdProducto.Enabled = false;
             this.txtIdProducto.Location = new System.Drawing.Point(15, 232);
             this.txtIdProducto.Name = "txtIdProducto";
             this.txtIdProducto.Size = new System.Drawing.Size(134, 20);
@@ -187,6 +195,7 @@ namespace appventas.VISTA
             // 
             // txtNombre
             // 
+            this.txtNombre.Enabled = false;
             this.txtNombre.Location = new System.Drawing.Point(206, 231);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(136, 20);
@@ -194,17 +203,19 @@ namespace appventas.VISTA
             // 
             // txtPrecio
             // 
+            this.txtPrecio.Enabled = false;
             this.txtPrecio.Location = new System.Drawing.Point(390, 231);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(132, 20);
             this.txtPrecio.TabIndex = 12;
             // 
-            // txtAmount
+            // txtCantidad
             // 
-            this.txtAmount.Location = new System.Drawing.Point(575, 232);
-            this.txtAmount.Name = "txtAmount";
-            this.txtAmount.Size = new System.Drawing.Size(143, 20);
-            this.txtAmount.TabIndex = 13;
+            this.txtCantidad.Location = new System.Drawing.Point(575, 232);
+            this.txtCantidad.Name = "txtCantidad";
+            this.txtCantidad.Size = new System.Drawing.Size(102, 20);
+            this.txtCantidad.TabIndex = 13;
+            this.txtCantidad.TextChanged += new System.EventHandler(this.txtCantidad_TextChanged);
             // 
             // label5
             // 
@@ -236,22 +247,73 @@ namespace appventas.VISTA
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(624, 201);
+            this.label8.Location = new System.Drawing.Point(595, 201);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(49, 13);
             this.label8.TabIndex = 17;
             this.label8.Text = "Cantidad";
             // 
+            // txtTotal
+            // 
+            this.txtTotal.Enabled = false;
+            this.txtTotal.Location = new System.Drawing.Point(698, 231);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.Size = new System.Drawing.Size(100, 20);
+            this.txtTotal.TabIndex = 18;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(720, 200);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(31, 13);
+            this.label9.TabIndex = 19;
+            this.label9.Text = "Total";
+            // 
+            // btnAgregarTotal
+            // 
+            this.btnAgregarTotal.Location = new System.Drawing.Point(825, 228);
+            this.btnAgregarTotal.Name = "btnAgregarTotal";
+            this.btnAgregarTotal.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregarTotal.TabIndex = 20;
+            this.btnAgregarTotal.Text = "Agregar";
+            this.btnAgregarTotal.UseVisualStyleBackColor = true;
+            this.btnAgregarTotal.Click += new System.EventHandler(this.btnAgregarTotal_Click);
+            // 
+            // txtTotalFinal
+            // 
+            this.txtTotalFinal.Enabled = false;
+            this.txtTotalFinal.Location = new System.Drawing.Point(817, 521);
+            this.txtTotalFinal.Name = "txtTotalFinal";
+            this.txtTotalFinal.Size = new System.Drawing.Size(100, 20);
+            this.txtTotalFinal.TabIndex = 21;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(722, 520);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(76, 18);
+            this.label10.TabIndex = 22;
+            this.label10.Text = "Total Final";
+            // 
             // FrmVenta
             // 
+            this.AcceptButton = this.btnAgregarTotal;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(814, 492);
+            this.ClientSize = new System.Drawing.Size(929, 567);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.txtTotalFinal);
+            this.Controls.Add(this.btnAgregarTotal);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtAmount);
+            this.Controls.Add(this.txtCantidad);
             this.Controls.Add(this.txtPrecio);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.txtIdProducto);
@@ -263,7 +325,7 @@ namespace appventas.VISTA
             this.Controls.Add(this.cbxClient);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cbxTdocument);
-            this.Controls.Add(this.txtNdocument);
+            this.Controls.Add(this.txtUltimaVenta);
             this.Controls.Add(this.label1);
             this.Name = "FrmVenta";
             this.Text = "FrmVenta";
@@ -278,7 +340,7 @@ namespace appventas.VISTA
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtNdocument;
+        private System.Windows.Forms.TextBox txtUltimaVenta;
         private System.Windows.Forms.ComboBox cbxTdocument;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cbxClient;
@@ -287,7 +349,6 @@ namespace appventas.VISTA
         private System.Windows.Forms.TextBox txtSproduct;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.TextBox txtAmount;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
@@ -300,5 +361,11 @@ namespace appventas.VISTA
         public System.Windows.Forms.TextBox txtIdProducto;
         public System.Windows.Forms.TextBox txtNombre;
         public System.Windows.Forms.TextBox txtPrecio;
+        private System.Windows.Forms.TextBox txtTotal;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnAgregarTotal;
+        private System.Windows.Forms.TextBox txtTotalFinal;
+        private System.Windows.Forms.Label label10;
+        public System.Windows.Forms.TextBox txtCantidad;
     }
 }

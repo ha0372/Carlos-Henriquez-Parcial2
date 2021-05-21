@@ -60,6 +60,7 @@
     <Compile Include="DAO\ClsDDocumento.cs" />
     <Compile Include="DAO\ClsDProducto.cs" />
     <Compile Include="DAO\ClsDUsuario.cs" />
+    <Compile Include="DAO\ClsDVenta.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
