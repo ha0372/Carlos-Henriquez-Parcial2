@@ -41,7 +41,7 @@ namespace appventas.VISTA
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtSproduct = new System.Windows.Forms.TextBox();
+            this.txtBuscarproduct = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.txtIdProducto = new System.Windows.Forms.TextBox();
@@ -57,6 +57,8 @@ namespace appventas.VISTA
             this.btnAgregarTotal = new System.Windows.Forms.Button();
             this.txtTotalFinal = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.btnGuardarVenta = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,7 +82,7 @@ namespace appventas.VISTA
             // cbxTdocument
             // 
             this.cbxTdocument.FormattingEnabled = true;
-            this.cbxTdocument.Location = new System.Drawing.Point(561, 38);
+            this.cbxTdocument.Location = new System.Drawing.Point(434, 33);
             this.cbxTdocument.Name = "cbxTdocument";
             this.cbxTdocument.Size = new System.Drawing.Size(201, 21);
             this.cbxTdocument.TabIndex = 2;
@@ -88,7 +90,7 @@ namespace appventas.VISTA
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(449, 41);
+            this.label2.Location = new System.Drawing.Point(322, 36);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(99, 13);
             this.label2.TabIndex = 3;
@@ -97,7 +99,7 @@ namespace appventas.VISTA
             // cbxClient
             // 
             this.cbxClient.FormattingEnabled = true;
-            this.cbxClient.Location = new System.Drawing.Point(561, 94);
+            this.cbxClient.Location = new System.Drawing.Point(434, 89);
             this.cbxClient.Name = "cbxClient";
             this.cbxClient.Size = new System.Drawing.Size(201, 21);
             this.cbxClient.TabIndex = 4;
@@ -105,7 +107,7 @@ namespace appventas.VISTA
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(494, 94);
+            this.label3.Location = new System.Drawing.Point(367, 89);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(39, 13);
             this.label3.TabIndex = 5;
@@ -158,12 +160,13 @@ namespace appventas.VISTA
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
             // 
-            // txtSproduct
+            // txtBuscarproduct
             // 
-            this.txtSproduct.Location = new System.Drawing.Point(132, 140);
-            this.txtSproduct.Name = "txtSproduct";
-            this.txtSproduct.Size = new System.Drawing.Size(228, 20);
-            this.txtSproduct.TabIndex = 7;
+            this.txtBuscarproduct.Location = new System.Drawing.Point(132, 140);
+            this.txtBuscarproduct.Name = "txtBuscarproduct";
+            this.txtBuscarproduct.Size = new System.Drawing.Size(228, 20);
+            this.txtBuscarproduct.TabIndex = 7;
+            this.txtBuscarproduct.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSproduct_KeyPress);
             // 
             // label4
             // 
@@ -216,6 +219,7 @@ namespace appventas.VISTA
             this.txtCantidad.Size = new System.Drawing.Size(102, 20);
             this.txtCantidad.TabIndex = 13;
             this.txtCantidad.TextChanged += new System.EventHandler(this.txtCantidad_TextChanged);
+            this.txtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidad_KeyPress);
             // 
             // label5
             // 
@@ -298,12 +302,30 @@ namespace appventas.VISTA
             this.label10.TabIndex = 22;
             this.label10.Text = "Total Final";
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(700, 66);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 23;
+            // 
+            // btnGuardarVenta
+            // 
+            this.btnGuardarVenta.Location = new System.Drawing.Point(825, 448);
+            this.btnGuardarVenta.Name = "btnGuardarVenta";
+            this.btnGuardarVenta.Size = new System.Drawing.Size(98, 23);
+            this.btnGuardarVenta.TabIndex = 24;
+            this.btnGuardarVenta.Text = "Guardar Venta";
+            this.btnGuardarVenta.UseVisualStyleBackColor = true;
+            this.btnGuardarVenta.Click += new System.EventHandler(this.btnGuardarVenta_Click);
+            // 
             // FrmVenta
             // 
-            this.AcceptButton = this.btnAgregarTotal;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(929, 567);
+            this.Controls.Add(this.btnGuardarVenta);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtTotalFinal);
             this.Controls.Add(this.btnAgregarTotal);
@@ -319,7 +341,7 @@ namespace appventas.VISTA
             this.Controls.Add(this.txtIdProducto);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtSproduct);
+            this.Controls.Add(this.txtBuscarproduct);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cbxClient);
@@ -346,7 +368,7 @@ namespace appventas.VISTA
         private System.Windows.Forms.ComboBox cbxClient;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox txtSproduct;
+        private System.Windows.Forms.TextBox txtBuscarproduct;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Label label5;
@@ -367,5 +389,7 @@ namespace appventas.VISTA
         private System.Windows.Forms.TextBox txtTotalFinal;
         private System.Windows.Forms.Label label10;
         public System.Windows.Forms.TextBox txtCantidad;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Button btnGuardarVenta;
     }
 }

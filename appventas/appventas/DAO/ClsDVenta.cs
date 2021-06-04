@@ -9,7 +9,7 @@ namespace appventas.DAO
 {
     class ClsDVenta
     {
-        public  List<tb_venta> UltimaVenta()
+        public List<tb_venta> UltimaVenta()
         {
             List<tb_venta> consultarventa = new List<tb_venta>();
 
@@ -19,5 +19,26 @@ namespace appventas.DAO
             }
             return consultarventa;
         }
+
+        public void save(tb_venta ventas)
+        {
+            using (sistema_ventasEntities db = new sistema_ventasEntities())
+            {
+                tb_venta venta = new tb_venta();
+
+                venta.iDDocumento = ventas.iDDocumento;
+                venta.iDCliente = ventas.iDCliente;
+                venta.iDUsuario = ventas.iDUsuario;
+                venta.totalVenta = ventas.totalVenta;
+                venta.fecha = ventas.fecha;
+
+                db.tb_venta.Add(venta);
+
+                db.SaveChanges();
+            }
+        }
+
     }
+
+
 }

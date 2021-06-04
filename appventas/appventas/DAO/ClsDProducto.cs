@@ -9,6 +9,24 @@ namespace appventas.DAO
 {
     class ClsDProducto
     {
+        public List<tb_producto> BuscarProductos(int codigo)
+
+        {
+            List<tb_producto> Lista = new List<tb_producto>();
+
+            using (sistema_ventasEntities db = new sistema_ventasEntities())
+            {
+
+
+                Lista = (from listadproductos in db.tb_producto
+                         where listadproductos.idProducto==codigo
+                         select listadproductos).ToList();
+            }
+
+            return Lista;
+        }
+
+
         public List<tb_producto> cargarProductosFiltro(String filtro)
 
         {

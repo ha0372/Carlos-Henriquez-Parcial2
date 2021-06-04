@@ -50,12 +50,12 @@ namespace appventas.VISTA
             FrmMenu.venta.txtNombre.Text = Nombre;
             FrmMenu.venta.txtPrecio.Text = Precio;
             FrmMenu.venta.txtCantidad.Focus();
-
             this.Close();
         }
         private void dtgProductos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             envio();
+            
         }
 
         private void dtgProductos_KeyDown(object sender, KeyEventArgs e)
