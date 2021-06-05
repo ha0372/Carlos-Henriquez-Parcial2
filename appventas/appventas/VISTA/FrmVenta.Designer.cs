@@ -129,6 +129,7 @@ namespace appventas.VISTA
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(794, 194);
             this.dataGridView1.TabIndex = 6;
+            this.dataGridView1.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dataGridView1_RowsRemoved);
             // 
             // Column1
             // 

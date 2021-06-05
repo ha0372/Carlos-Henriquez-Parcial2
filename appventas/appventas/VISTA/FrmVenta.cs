@@ -97,13 +97,8 @@ namespace appventas.VISTA
 
             }
         }
-
-        private void btnAgregarTotal_Click(object sender, EventArgs e)
+        void calculartotal()
         {
-            calcular();
-
-            dataGridView1.Rows.Add(txtIdProducto.Text, txtNombre.Text, txtPrecio.Text, txtCantidad.Text, txtTotal.Text);
-
             Double suma = 0;  /*variable de acarreo*/
 
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
@@ -116,12 +111,23 @@ namespace appventas.VISTA
 
                 txtTotalFinal.Text = suma.ToString();
 
-                txtIdProducto.Clear();
-                txtNombre.Clear();
-                txtPrecio.Clear();
-                txtCantidad.Text = "";
-                txtTotal.Text = "";
+
             }
+        }
+
+        private void btnAgregarTotal_Click(object sender, EventArgs e)
+        {
+            calcular();
+
+            dataGridView1.Rows.Add(txtIdProducto.Text, txtNombre.Text, txtPrecio.Text, txtCantidad.Text, txtTotal.Text);
+
+            calculartotal();
+
+            txtIdProducto.Clear();
+            txtNombre.Clear();
+            txtPrecio.Clear();
+            txtCantidad.Text = "";
+            txtTotal.Text = "";
 
             dataGridView1.Refresh();
             dataGridView1.ClearSelection();
@@ -129,7 +135,7 @@ namespace appventas.VISTA
             dataGridView1.FirstDisplayedScrollingRowIndex = ultimafila;
             dataGridView1.Rows[ultimafila].Selected = true;
         }
-        
+
 
         private void txtSproduct_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -183,23 +189,47 @@ namespace appventas.VISTA
 
         private void btnGuardarVenta_Click(object sender, EventArgs e)
         {
-            try { 
-            ClsDVenta ventas = new ClsDVenta();
-            tb_venta venta = new tb_venta();
+            try
+            {
+                ClsDVenta ventas = new ClsDVenta();
+                tb_venta venta = new tb_venta();
 
-            venta.iDDocumento = Convert.ToInt32(cbxTdocument.SelectedValue.ToString());
-            venta.iDCliente = Convert.ToInt32(cbxClient.SelectedValue.ToString());
-            venta.iDUsuario = 1;
-            venta.totalVenta = Convert.ToDecimal(txtTotalFinal.Text);
-            venta.fecha = Convert.ToDateTime(dateTimePicker1.Text);
+                venta.iDDocumento = Convert.ToInt32(cbxTdocument.SelectedValue.ToString());
+                venta.iDCliente = Convert.ToInt32(cbxClient.SelectedValue.ToString());
+                venta.iDUsuario = 1;
+                venta.totalVenta = Convert.ToDecimal(txtTotalFinal.Text);
+                venta.fecha = Convert.ToDateTime(dateTimePicker1.Text);
+                ventas.save(venta);
 
-            ventas.save(venta);
+                ClsDDetalle detalle = new ClsDDetalle();
+                tb_detalleVenta tb_Detalle = new tb_detalleVenta();
+
+                foreach (DataGridViewRow dtgv in dataGridView1.Rows)
+                {
+                    tb_Detalle.iDVenta = Convert.ToInt32(txtUltimaVenta.Text);
+                    tb_Detalle.iDProducto = Convert.ToInt32(dtgv.Cells[0].Value.ToString());
+                    tb_Detalle.cantidad = Convert.ToInt32(dtgv.Cells[3].Value.ToString());
+                    tb_Detalle.precio = Convert.ToDecimal(dtgv.Cells[2].Value.ToString());
+                    tb_Detalle.total = Convert.ToInt32(dtgv.Cells[4].Value.ToString());
+
+                    detalle.guardardetalleventa(tb_Detalle);
+                }
+
+                ultimocorrelativoventa();
+                dataGridView1.Rows.Clear();
+                txtTotalFinal.Text = "";
+
                 MessageBox.Show("Save");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Error"+ ex);
+                MessageBox.Show("Error" + ex);
             }
+        }
+
+        private void dataGridView1_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            calculartotal();
         }
     }
 }
